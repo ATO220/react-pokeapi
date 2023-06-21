@@ -3,7 +3,6 @@ import { usePokemon } from "../../hooks/usePokemon";
 import { background } from "../../utils/BackgroundsByType";
 import styles from "./styles.module.scss";
 import { Loader } from "../Loader";
-import { PokeType } from "../../interfaces/types";
 import { PokeTypes } from "../PokemonDetail/components/PokeTypes";
 
 interface Props {
