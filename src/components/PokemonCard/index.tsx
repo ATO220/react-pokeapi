@@ -3,17 +3,19 @@ import { usePokemon } from "../../hooks/usePokemon";
 import { background } from "../../utils/BackgroundsByType";
 import styles from "./styles.module.scss";
 import { Loader } from "../Loader";
+import { PokeType } from "../../interfaces/types";
+import { PokeTypes } from "../PokemonDetail/components/PokeTypes";
 
 interface Props {
-    url: string
+  url: string;
 }
 
-export const PokemonCard = ({url}: Props) => {
-    const {pokemon} = usePokemon(url)
-
-    const backgroundSelected = background[pokemon?.types[0]?.type.name]
-    return (
-        <Link to={`/${pokemon?.id}`} className={styles.pokeCard}>
+export const PokemonCard = ({ url }: Props) => {
+  const { pokemon } = usePokemon(url);
+  const typeName = pokemon?.types?.[0]?.type?.name as keyof typeof PokeTypes;
+  const backgroundSelected = background[typeName];
+  return (
+    <Link to={`/${pokemon?.id}`} className={styles.pokeCard}>
       <div style={{ borderColor: backgroundSelected }} className={styles.top}>
         <span style={{ color: backgroundSelected }}>#{pokemon?.id}</span>
         {pokemon?.sprites?.other?.dream_world?.front_default ||
@@ -35,5 +37,5 @@ export const PokemonCard = ({url}: Props) => {
         {pokemon?.name}
       </div>
     </Link>
-    )
-}
+  );
+};
